@@ -1,23 +1,32 @@
 package com.bank.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import javax.validation.Valid;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import com.bank.request.SignUpForm;
+import com.bank.response.Response;
+
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RestController("/auth")
+@RequestMapping("/auth")
 public class LoginController {
 	
-	@GetMapping("/")
-	public String home() {
-		return "<h1>My Home </h1>";
+	@PostMapping("/login")
+	public ResponseEntity<Response> registerUser(@Valid @RequestBody LoginForm loginRequest){
+		
+		
 	}
 	
-	@GetMapping("/user")
-	public String user() {
-		return "<h1>User Page </h1>";
+	public ResponseEntity<Response> registerUser(@Valid @RequestBody SignUpForm signUpRequest){
+		
 	}
-	
-	@GetMapping("/admin")
-	public String admin() {
-		return "<h1>Admin Page </h1>";
-	}
+
 }
+
