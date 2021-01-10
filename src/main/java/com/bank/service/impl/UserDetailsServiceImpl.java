@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.bank.model.User;
 import com.bank.repository.UserRepo;
 
 @Service
@@ -16,9 +17,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// Take user name from login page & validate through database
-		//if user is valid then return UserDetails object
-		return null;
+		User user = userRepo.findByUsername(username)
+		.orElseThrow(() ->
+		new UsernameNotFoundException("User Not Found with  username  " + username)
+		);
+		return user;
 	}
 	
 	
