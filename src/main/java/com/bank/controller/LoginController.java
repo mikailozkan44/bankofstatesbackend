@@ -46,8 +46,8 @@ public class LoginController {
 	@Autowired
 	RoleRepo roleRepo;
 	
-//	@Autowired
-//	UserService userService;
+	@Autowired
+	UserService userService;
 
 	@Autowired
 	PasswordEncoder encoder;
@@ -55,22 +55,22 @@ public class LoginController {
 	@Autowired
 	private JwtUtil jwtUtil;
 
-//	@PostMapping("/login")
-//	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
-//
-//		Authentication authentication = authenticationManager.authenticate(
-//				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-//
-//		SecurityContextHolder.getContext().setAuthentication(authentication);
-//		
-//		User user = (User) authentication.getPrincipal();
-//
-//		String jwt = jwtUtil.generateToken(authentication);
-//		
-//		UserDAO userDAO = userService.getUserDAO(user);
-//		
-//		return ResponseEntity.ok(new LoginResponse(userDAO,jwt));
-//	}
+	@PostMapping("/login")
+	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
+
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
+		User user = (User) authentication.getPrincipal();
+
+		String jwt = jwtUtil.generateToken(authentication);
+		
+		UserDAO userDAO = userService.getUserDAO(user);
+		
+		return ResponseEntity.ok(new LoginResponse(userDAO,jwt));
+	}
 
 	@PostMapping("/register")
 	public ResponseEntity<Response> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
