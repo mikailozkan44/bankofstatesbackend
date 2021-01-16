@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.bank.dao.UserDAO;
 import com.bank.model.Role;
 import com.bank.model.User;
 import com.bank.model.UserRole;
@@ -27,9 +27,9 @@ import com.bank.repository.RoleRepo;
 import com.bank.repository.UserRepo;
 import com.bank.request.LoginForm;
 import com.bank.request.SignUpForm;
-
+import com.bank.response.LoginResponse;
 import com.bank.response.Response;
-
+import com.bank.service.UserService;
 import com.bank.util.JwtUtil;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
