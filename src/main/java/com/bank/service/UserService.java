@@ -6,5 +6,7 @@ import com.bank.model.User;
 public interface UserService {
 	
 	UserDAO getUserDAO(User user);
+	
+	UserDAO getUserDAOByName(String userName);
 
 }
